@@ -9,7 +9,7 @@ Class Bici implements MostrarConCapacidad{
         $this->capacidad = $capacidad;
     }
     public function mostrar(){
-        return $this->nombre . "(" . $this->getCapacidad() . ")";
+        return $this->nombre . "(" . $this->getCapacidad() . ") \n";
     }
     public function getCapacidad(){
         return $this->capacidad;

@@ -3,22 +3,22 @@ include_once("MostrarConCapacidad.php");
 Class Caja implements MostrarConCapacidad{
     private $contenido = array();
     private $capacidadGuardado;
-    private $capacidad;
+    private $pesoDeLaCaja;
 
-    public function __construct($capacidadGuardado, $capacidad)
+    public function __construct($capacidadGuardado, $pesoDeLaCaja)
     {
         $this->capacidadGuardado = $capacidadGuardado;
-        $this->capacidad = $capacidad;
+        $this->pesoDeLaCaja = $pesoDeLaCaja;
     }
 
     public function guardar(MostrarConCapacidad $obj){
-        if ($this->getCapacidadGuardado() - $obj->getCapacidad() >= 0){
+        if ($this->getCapacidadGuardado() - $this->getCapacidad() - $obj->getCapacidad() >= 0){
             $this->contenido[] = $obj;
-            $this->capacidadGuardado -= $obj->getCapacidad();
         }
     }
 
     public function mostrar(){
+        echo "Caja(" . $this->getStatus() . "): \n";
         foreach($this->contenido as $v){
             echo $v->mostrar();
         }
@@ -29,10 +29,14 @@ Class Caja implements MostrarConCapacidad{
         foreach($this->contenido as $v){
             $total = $total + $v->getCapacidad();
         }
-        return $total;
+        return $total + $this->pesoDeLaCaja;
     }
 
     public function getCapacidadGuardado(){
         return $this->capacidadGuardado;
+    }
+
+    public function getStatus(){
+        return $this->getCapacidad() . "/" . $this->getCapacidadGuardado();
     }
 }

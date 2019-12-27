@@ -10,7 +10,7 @@ Class Auto implements MostrarConCapacidad{
     }
 
     public function mostrar(){
-        return $this->nombre . "(" . $this->getCapacidad() . ")";
+        return $this->nombre . "(" . $this->getCapacidad() . ") \n";
     }
 
     public function getCapacidad(){
